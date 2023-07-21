@@ -1,27 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Book = ({ book, onDelete }) => {
-  const [isDeleted, setIsDeleted] = useState(false);
-
-  const handleDelete = () => {
-    onDelete(book.id);
-    setIsDeleted(true);
-  };
-
-  if (isDeleted) {
-    return null;
-  }
-
+function Book({ book, onDelete }) {
   return (
     <div>
-      <h3>{book.title}</h3>
-      <p>
-        Author:
-        {book.author}
-      </p>
-      <button onClick={handleDelete}>Delete</button>
+      <span>{book.title}</span>
+      <span>{book.author}</span>
+      <button type="button" onClick={() => onDelete(book.id)}>Delete</button>
     </div>
   );
+}
+
+// Add prop type validation
+Book.propTypes = {
+  book: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+  }).isRequired,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default Book;
