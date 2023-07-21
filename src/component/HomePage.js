@@ -6,8 +6,14 @@ function HomePage() {
     <div>
       <h2>Home Page</h2>
       <nav>
-        <Link to="/">Home</Link>
-        <Link to="/categories">Categories</Link>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/categories">Categories</Link>
+          </li>
+        </ul>
       </nav>
     </div>
   );
