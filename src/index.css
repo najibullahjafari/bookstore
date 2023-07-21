@@ -1,0 +1,6 @@
+.home-con {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 12px;
+}
