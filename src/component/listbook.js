@@ -1,38 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeBook } from '../redux/books/booksSlice';
 
-function ListBook({ books, onDelete }) {
-  // Check if books is undefined or empty before rendering
-  if (!books || books.length === 0) {
-    return <div>No books available.</div>;
-  }
+const BookList = () => {
+  const books = useSelector((state) => state.books);
+  const dispatch = useDispatch();
+
+  const handleRemoveBook = (itemId) => {
+    dispatch(removeBook(itemId));
+  };
+
+  // Placeholder functions for "Comment" and "Edit" buttons
+  const handleCommentBook = (itemId) => {
+    console.log(`Comment button clicked for book with ID: ${itemId}`);
+  };
+
+  const handleEditBook = (itemId) => {
+    console.log(`Edit button clicked for book with ID: ${itemId}`);
+  };
 
   return (
-    <div>
+    <ul>
       {books.map((book) => (
-        <div key={book.id}>
-          <span>{book.title}</span>
-          <button type="button" onClick={() => onDelete(book.id)}>Delete</button>
-        </div>
+        <li key={book.item_id}>
+          <strong>{book.title}</strong>
+          {' '}
+          by
+          {book.author}
+          {' '}
+          -
+          {book.category}
+          <button type="button" onClick={() => handleRemoveBook(book.item_id)}>Remove</button>
+          <button type="button" onClick={() => handleCommentBook(book.item_id)}>Comment</button>
+          <button type="button" onClick={() => handleEditBook(book.item_id)}>Edit</button>
+        </li>
       ))}
-    </div>
+    </ul>
   );
-}
-
-// Add prop type validation
-ListBook.propTypes = {
-  books: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-    }),
-  ),
-  onDelete: PropTypes.func.isRequired,
 };
 
-// Add defaultProps to avoid the error
-ListBook.defaultProps = {
-  books: [], // You can provide a default empty array here if needed
-};
-
-export default ListBook;
+export default BookList;
