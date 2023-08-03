@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { addBook } from '../redux/books/booksSlice';
+import { addBook } from '../redux/books/bookstoreApi';
 
 const AddBookButton = () => {
   const dispatch = useDispatch();

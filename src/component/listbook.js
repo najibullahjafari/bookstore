@@ -1,42 +1,45 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/booksSlice';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBooks } from '../redux/books/bookstoreApi';
 
-const BookList = () => {
-  const books = useSelector((state) => state.books);
+const ListBooks = () => {
   const dispatch = useDispatch();
+  const appId = 'Uc20cAFSnSyU82tMWhQ6'; // Replace with the actual appId
 
-  const handleRemoveBook = (itemId) => {
-    dispatch(removeBook(itemId));
-  };
+  const { books, isLoading, error } = useSelector((state) => state.books);
 
-  // Placeholder functions for "Comment" and "Edit" buttons
-  const handleCommentBook = (itemId) => {
-    console.log(`Comment button clicked for book with ID: ${itemId}`);
-  };
+  useEffect(() => {
+    dispatch(fetchBooks(appId));
+  }, [dispatch, appId]);
 
-  const handleEditBook = (itemId) => {
-    console.log(`Edit button clicked for book with ID: ${itemId}`);
-  };
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <div>
+        Error:
+        {error}
+      </div>
+    );
+  }
 
   return (
-    <ul>
-      {books.map((book) => (
-        <li key={book.item_id}>
-          <strong>{book.title}</strong>
-          {' '}
-          by
-          {book.author}
-          {' '}
-          -
-          {book.category}
-          <button type="button" onClick={() => handleRemoveBook(book.item_id)}>Remove</button>
-          <button type="button" onClick={() => handleCommentBook(book.item_id)}>Comment</button>
-          <button type="button" onClick={() => handleEditBook(book.item_id)}>Edit</button>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <h2>List of Books</h2>
+      <ul>
+        {books.map((book) => (
+          <li key={book.item_id}>
+            <span>{book.title}</span>
+            {' '}
+            -
+            <span>{book.category}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
-export default BookList;
+export default ListBooks;

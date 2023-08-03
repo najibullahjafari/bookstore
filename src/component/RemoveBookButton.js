@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/booksSlice';
+import { removeBook } from '../redux/books/bookstoreApi';
 
 const RemoveBookButton = () => {
   const dispatch = useDispatch();

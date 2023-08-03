@@ -7,6 +7,11 @@ const store = configureStore({
     books: booksReducer,
     categories: categoriesReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    thunk: true,
+    immutableCheck: true,
+    serializableCheck: true,
+  }),
 });
 
 export default store;

@@ -1,41 +1,55 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchBooks, addBook, removeBook } from './bookstoreApi';
 
-const initialState = [
-  {
-    item_id: 'item1',
-    title: 'The Great Gatsby',
-    author: 'John Smith',
-    category: 'Fiction',
-  },
-  {
-    item_id: 'item2',
-    title: 'Anna Karenina',
-    author: 'Leo Tolstoy',
-    category: 'Fiction',
-  },
-  {
-    item_id: 'item3',
-    title: 'The Selfish Gene',
-    author: 'Richard Dawkins',
-    category: 'Nonfiction',
-  },
-];
+const initialState = {
+  books: [],
+  isLoading: false,
+  error: null,
+};
 
 const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-    addBook: (state, action) => {
-      state.push(action.payload);
-    },
-    removeBook: (state, action) => {
-      const bookIndex = state.findIndex((book) => book.item_id === action.payload);
-      if (bookIndex !== -1) {
-        state.splice(bookIndex, 1);
-      }
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchBooks.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.books = action.payload;
+      })
+      .addCase(fetchBooks.rejected, (state) => {
+        state.isLoading = false;
+        state.error = 'Error fetching books';
+      })
+      .addCase(addBook.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(addBook.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.books.push(action.payload);
+      })
+      .addCase(addBook.rejected, (state) => {
+        state.isLoading = false;
+        state.error = 'Error adding book';
+      })
+      .addCase(removeBook.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(removeBook.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.books = state.books.filter((book) => book.id !== action.payload);
+      })
+      .addCase(removeBook.rejected, (state) => {
+        state.isLoading = false;
+        state.error = 'Error removing book';
+      });
   },
 });
 
-export const { addBook, removeBook } = booksSlice.actions;
 export default booksSlice.reducer;
