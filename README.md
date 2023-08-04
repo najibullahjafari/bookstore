@@ -29,6 +29,8 @@ Book Store
 # 📖 Math Magicians <a name="about-project"></a>
 
 Book Store is a web app That we can remove, add and delete a book, I used React and JSX to build this web app.
+<img width="958" alt="Screenshot 2023-08-04 220430" src="https://github.com/najibullahjafari/bookstore/assets/121656832/a31cba24-a1e0-47cd-9f81-1da5e76b9bbf">
+
 
 ## 🛠 Built With <a name="built-with"></a>
 
