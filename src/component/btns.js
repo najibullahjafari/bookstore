@@ -26,9 +26,9 @@ function ActionButtons({ book }) {
 
   return (
     <div className="button-con">
-      <a className='btn-con' href="#">Comments</a>
+      <a className="btn-con" href="#sd">Comments</a>
       {'    |    '}
-      <a href="#" className="btn-con" onClick={() => dispatch(apiErase(book.item_id))}>
+      <a href="#vf" className="btn-con" onClick={() => dispatch(apiErase(book.item_id))}>
         Remove
       </a>
       {'    |    '}
@@ -54,7 +54,7 @@ function ActionButtons({ book }) {
           </button>
         </>
       ) : (
-        <a href="#" className="btn-con" onClick={handleEdit}>
+        <a href="#edit" className="btn-con" onClick={handleEdit}>
           Edit
         </a>
       )}

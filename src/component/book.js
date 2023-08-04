@@ -21,10 +21,10 @@ const BookItem = ({ book }) => {
         </div>
       </div>
       <div className="progress-bar">
-        <div className="progress-circle" style={{ clip: `rect(0, ${progress}px, 100px, 0)` }}>
-        </div>
+        <div className="progress-circle" style={{ clip: `rect(0, ${progress}px, 100px, 0)` }} />
         <div className="progress-percentage">
-          {progress}%
+          {progress}
+          %
         </div>
         <div>completed</div>
       </div>
