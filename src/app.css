@@ -89,7 +89,6 @@
 
 /* book form */
 
-/* App.css */
 .book-form {
   display: flex;
   flex-direction: column;
@@ -105,7 +104,7 @@
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #0290ff;
+  color: #888;
   align-self: self-start;
 }
 
@@ -121,7 +120,69 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 16px;
+  width: 300px;
 }
+
+/* App.css */
+
+/* ... other styles ... */
+
+.progress-bar {
+  position: relative; /* Add this to make the circle position relative */
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #f3f3f3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* App.css */
+
+/* ... other styles ... */
+
+.progress-bar {
+  position: relative;
+  width: 100px;
+  height: 50px;
+  background-color: #f3f3f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  clip: rect(0, 50px, 100px, 0); /* Clip to create a half-circle */
+}
+
+.progress-circle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid #0290ff;
+  box-sizing: border-box;
+  transform: rotate(-90deg); /* Rotate the half-circle to start from the top */
+}
+
+.progress-percentage {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0290ff;
+}
+
+/* ... other styles ... */
 
 .form-content button {
   background-color: #0290ff;
