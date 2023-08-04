@@ -11,6 +11,7 @@ Book Store
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+  - [🚀 Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -58,6 +59,10 @@ Book Store is a web app That we can remove, add and delete a book, I used React 
     <li><a href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer">VS CODE Live Server Extension</a></li>
   </ul>
 </details>
+
+## 🚀 Live Demo <a name="live-demo"></a>
+
+Check out the live demo of this project [here](https://64cd86e7739d9460c2d1d2c9--lucent-bavarois-61bf5d.netlify.app/).
 
 ### Key Features <a name="key-features"></a>
 
