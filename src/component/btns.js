@@ -11,6 +11,10 @@ function ActionButtons({ book }) {
     dispatch(apiErase(book.item_id));
   };
 
+  const handleEditBook = () => {
+    setShowEditForm(true);
+  };
+
   const handleCloseEditForm = () => {
     setShowEditForm(false);
   };
@@ -21,7 +25,7 @@ function ActionButtons({ book }) {
       |
       <button type="button" className="remove-button" onClick={handleRemoveBook}>Remove</button>
       |
-      <button type="button" className="edit-button">Edit</button>
+      <button type="button" className="edit-button" onClick={handleEditBook}>Edit</button>
       {showEditForm && (
         <div className="modal">
           <div className="modal-content">
