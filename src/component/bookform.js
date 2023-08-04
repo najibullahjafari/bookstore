@@ -8,23 +8,32 @@ function BookForm() {
 
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [error, setError] = useState('');
 
   const handleAddBook = () => {
-    dispatch(apiPost(
-      {
+    // Check if title and author fields are not empty
+    if (!title || !author) {
+      setError('Please enter both title and author');
+      return;
+    }
+
+    dispatch(
+      apiPost({
         item_id: Date.now().toString(),
         title,
         author,
         category,
-      },
-    ));
+      }),
+    );
+    // Reset the form fields and error state
     setTitle('');
     setAuthor('');
+    setError('');
   };
 
   return (
     <form className="book-form">
-      <h4 className="form-heading">ADD NEW BOOK</h4>
+      <h4 className="form-heading">ADD BOOK</h4>
       <div className="form-content">
         <input
           type="text"
@@ -42,10 +51,8 @@ function BookForm() {
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         />
-        <button
-          type="button"
-          onClick={handleAddBook}
-        >
+        {error && <p className="error">{error}</p>}
+        <button type="button" onClick={handleAddBook}>
           ADD BOOK
         </button>
       </div>

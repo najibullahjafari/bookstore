@@ -1,31 +1,45 @@
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ActionButtons from './btns';
 
-const BookItem = ({ book }) => (
-  <div key={book.item_id}>
-    <div>
-      <p>{book.category}</p>
-      <h2>{book.title}</h2>
-      <p>{book.author}</p>
+const BookItem = ({ book }) => {
+  const [progress, setProgress] = useState(Math.floor(Math.random() * 100) + 1);
+
+  const handleAddBook = () => {
+    setProgress(Math.floor(Math.random() * 100) + 1);
+  };
+
+  return (
+    <div key={book.item_id}>
       <div>
-        <ActionButtons book={book} />
+        <p>{book.category}</p>
+        <h2>{book.title}</h2>
+        <p>{book.author}</p>
+        <div>
+          <ActionButtons book={book} />
+        </div>
+      </div>
+      <div>
+        <div />
+        <div>
+          <div>
+            {progress}
+            %
+          </div>
+          <div>completed</div>
+        </div>
+      </div>
+      <div> </div>
+      <div>
+        <p>chapter</p>
+        <p>Chapter 12</p>
+        <button type="button" onClick={handleAddBook}>
+          Update progress
+        </button>
       </div>
     </div>
-    <div>
-      <div />
-      <div>
-        <div>91%</div>
-        <div>completed</div>
-      </div>
-    </div>
-    <div> </div>
-    <div>
-      <p>chapter</p>
-      <p>Chapter 12</p>
-      <button type="button">Update progress</button>
-    </div>
-  </div>
-);
+  );
+};
 
 BookItem.propTypes = {
   book: PropTypes.shape({

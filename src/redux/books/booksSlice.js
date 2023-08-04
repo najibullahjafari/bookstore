@@ -15,7 +15,7 @@ export const apiData = createAsyncThunk('books/apiData', async () => {
 export const apiPost = createAsyncThunk('books/apiPost', async (newBook) => {
   try {
     const response = await axios.post(apiUrl, newBook);
-    return (response.data === 'Created') ? newBook : null;
+    return response.data === 'Created' ? newBook : null;
   } catch (error) {
     throw new Error('Error');
   }
@@ -24,11 +24,23 @@ export const apiPost = createAsyncThunk('books/apiPost', async (newBook) => {
 export const apiErase = createAsyncThunk('books/apiErase', async (id) => {
   try {
     const response = await axios.delete(`${apiUrl}/${id}`);
-    return (response.data === 'The book was deleted successfully!') ? id : null;
+    return response.data === 'The book was deleted successfully!' ? id : null;
   } catch (error) {
     throw new Error('Error');
   }
 });
+
+export const apiUpdateProgress = createAsyncThunk(
+  'books/apiUpdateProgress',
+  async ({ id, progress }) => {
+    try {
+      const response = await axios.patch(`${apiUrl}/${id}`, { progress });
+      return response.data === 'Updated' ? { id, progress } : null;
+    } catch (error) {
+      throw new Error('Error');
+    }
+  },
+);
 
 const initialState = {
   books: [],
@@ -39,8 +51,7 @@ const initialState = {
 const booksSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder
@@ -75,8 +86,29 @@ const booksSlice = createSlice({
       .addCase(apiErase.fulfilled, (state, action) => {
         state.status = 'succeeded';
         if (action.payload !== null) {
-          state.books = state.books.filter((book) => book.item_id !== action.payload);
+          state.books = state.books.filter(
+            (book) => book.item_id !== action.payload,
+          );
         }
+      })
+      .addCase(apiUpdateProgress.pending, (state) => {
+        state.status = 'loading...';
+      })
+      .addCase(apiUpdateProgress.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        if (action.payload !== null) {
+          const { id, progress } = action.payload;
+          state.books = state.books.map((book) => {
+            if (book.item_id === id) {
+              return { ...book, progress };
+            }
+            return book;
+          });
+        }
+      })
+      .addCase(apiUpdateProgress.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
   },
 });
