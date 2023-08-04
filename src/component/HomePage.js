@@ -1,13 +1,10 @@
 import React from 'react';
-import BookList from './listbook';
-import AddBookButton from './AddBookButton';
+import List from './listbook';
 
-const HomePage = () => (
-  <div>
-    <h1>My Book Collection</h1>
-    <BookList />
-    <AddBookButton />
-  </div>
-);
-
-export default HomePage;
+export default function Home() {
+  return (
+    <div>
+      <List />
+    </div>
+  );
+}

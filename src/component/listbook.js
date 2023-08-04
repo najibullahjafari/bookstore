@@ -1,42 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/booksSlice';
+import { apiData } from '../redux/books/booksSlice';
+import BookItem from './book';
 
-const BookList = () => {
-  const books = useSelector((state) => state.books);
+function List() {
   const dispatch = useDispatch();
+  const [dataFetched, setDataFetched] = useState(false);
 
-  const handleRemoveBook = (itemId) => {
-    dispatch(removeBook(itemId));
-  };
+  useEffect(() => {
+    if (!dataFetched) {
+      dispatch(apiData());
+      setDataFetched(true);
+    }
+  }, [dataFetched, dispatch]);
 
-  // Placeholder functions for "Comment" and "Edit" buttons
-  const handleCommentBook = (itemId) => {
-    console.log(`Comment button clicked for book with ID: ${itemId}`);
-  };
+  const books = useSelector((store) => store.books);
 
-  const handleEditBook = (itemId) => {
-    console.log(`Edit button clicked for book with ID: ${itemId}`);
-  };
+  if (!dataFetched) {
+    return <div>Loading...</div>;
+  }
+
+  if (books.length === 0) {
+    return <div>No books found.</div>;
+  }
 
   return (
-    <ul>
-      {books.map((book) => (
-        <li key={book.item_id}>
-          <strong>{book.title}</strong>
-          {' '}
-          by
-          {book.author}
-          {' '}
-          -
-          {book.category}
-          <button type="button" onClick={() => handleRemoveBook(book.item_id)}>Remove</button>
-          <button type="button" onClick={() => handleCommentBook(book.item_id)}>Comment</button>
-          <button type="button" onClick={() => handleEditBook(book.item_id)}>Edit</button>
-        </li>
+    <>
+      {books.books.map((book) => (
+        <BookItem key={book.item_id} book={book} />
       ))}
-    </ul>
+    </>
   );
-};
+}
 
-export default BookList;
+export default List;
