@@ -14,15 +14,15 @@ const BookItem = ({ book }) => (
     <div>
       <div />
       <div>
-        <div>64%</div>
+        <div>91%</div>
         <div>completed</div>
       </div>
     </div>
     <div> </div>
     <div>
-      <p>CURRENT CHAPTER</p>
-      <p>Chapter 17</p>
-      <button type="button">UPDATE PROGRESS</button>
+      <p>chapter</p>
+      <p>Chapter 12</p>
+      <button type="button">Update progress</button>
     </div>
   </div>
 );
