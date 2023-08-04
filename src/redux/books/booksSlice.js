@@ -8,7 +8,7 @@ export const apiData = createAsyncThunk('books/apiData', async () => {
     const response = await axios.get(apiUrl);
     return response.data;
   } catch (error) {
-    throw new Error('Error al obtener los datos de la API');
+    throw new Error('Error');
   }
 });
 
@@ -17,16 +17,16 @@ export const apiPost = createAsyncThunk('books/apiPost', async (newBook) => {
     const response = await axios.post(apiUrl, newBook);
     return (response.data === 'Created') ? newBook : null;
   } catch (error) {
-    throw new Error('Error al obtener los datos de la API');
+    throw new Error('Error');
   }
 });
 
 export const apiErase = createAsyncThunk('books/apiErase', async (id) => {
   try {
     const response = await axios.delete(`${apiUrl}/${id}`);
-    return (response.data === 'The book was deleted successfully!') ? id : null;
+    return (response.data === 'deleted successfully!') ? id : null;
   } catch (error) {
-    throw new Error('Error al obtener los datos de la API');
+    throw new Error('Error');
   }
 });
 
