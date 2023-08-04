@@ -1,35 +1,31 @@
 import PropTypes from 'prop-types';
 import ActionButtons from './btns';
 
-function BookItem({ book }) {
-  return (
-    <>
-      <div key={book.item_id}>
-        <div>
-          <p>{book.category}</p>
-          <h2>{book.title}</h2>
-          <p>{book.author}</p>
-          <div>
-            <ActionButtons book={book} />
-          </div>
-        </div>
-        <div>
-          <div />
-          <div>
-            <div>64%</div>
-            <div>completed</div>
-          </div>
-        </div>
-        <div> </div>
-        <div>
-          <p>CURRENT CHAPTER</p>
-          <p>Chapter 17</p>
-          <button type="button">UPDATE PROGRESS</button>
-        </div>
+const BookItem = ({ book }) => (
+  <div key={book.item_id}>
+    <div>
+      <p>{book.category}</p>
+      <h2>{book.title}</h2>
+      <p>{book.author}</p>
+      <div>
+        <ActionButtons book={book} />
       </div>
-    </>
-  );
-}
+    </div>
+    <div>
+      <div />
+      <div>
+        <div>64%</div>
+        <div>completed</div>
+      </div>
+    </div>
+    <div> </div>
+    <div>
+      <p>CURRENT CHAPTER</p>
+      <p>Chapter 17</p>
+      <button type="button">UPDATE PROGRESS</button>
+    </div>
+  </div>
+);
 
 BookItem.propTypes = {
   book: PropTypes.shape({
