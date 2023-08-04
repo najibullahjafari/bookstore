@@ -1,7 +1,15 @@
-/* App.css */
 /* Some Styles for nav bar */
 
+body {
+  background-color: rgb(250, 247, 242);
+}
+
+* {
+  margin: 0;
+}
+
 .navbar-container {
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,6 +17,7 @@
   color: #0290ff;
   padding: 0 12%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
 }
 
 .navbar-links {
@@ -61,6 +70,7 @@
   margin: 0 12%;
   margin-bottom: 10px;
   gap: 30px;
+  background-color: #fff;
 }
 
 .book-author {
@@ -96,7 +106,6 @@
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  margin-bottom: 20px;
   margin: 20px 12%;
 }
 
@@ -123,32 +132,14 @@
   width: 300px;
 }
 
-/* App.css */
-
-/* ... other styles ... */
-
 .progress-bar {
-  position: relative; /* Add this to make the circle position relative */
+  position: relative;
   width: 100px;
   height: 100px;
   border-radius: 50%;
   background-color: #f3f3f3;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* App.css */
-
-/* ... other styles ... */
-
-.progress-bar {
-  position: relative;
-  width: 100px;
-  height: 50px;
-  background-color: #f3f3f3;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -173,7 +164,7 @@
   border-radius: 50%;
   border: 2px solid #0290ff;
   box-sizing: border-box;
-  transform: rotate(-90deg); /* Rotate the half-circle to start from the top */
+  transform: rotate(-90deg);
 }
 
 .progress-percentage {
@@ -182,7 +173,15 @@
   color: #0290ff;
 }
 
-/* ... other styles ... */
+.book-progress button {
+  background-color: #0290ff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
 .form-content button {
   background-color: #0290ff;
@@ -233,35 +232,8 @@
   text-align: center;
 }
 
-.progress-bar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: #f3f3f3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.progress-circle {
-  font-size: 18px;
-  font-weight: bold;
-  color: #0290ff;
-}
-
 .book-progress p {
   margin: 5px 0;
-}
-
-.book-progress button {
-  background-color: #0290ff;
-  color: #fff;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .book-progress button:hover {

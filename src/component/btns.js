@@ -27,11 +27,11 @@ function ActionButtons({ book }) {
   return (
     <div className="button-con">
       <a className='btn-con' href="#">Comments</a>
-      |
+      {'    |    '}
       <a href="#" className="btn-con" onClick={() => dispatch(apiErase(book.item_id))}>
         Remove
       </a>
-      |
+      {'    |    '}
       {editing ? (
         <>
           <input
