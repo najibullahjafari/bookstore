@@ -1,61 +1,59 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../redux/books/bookstoreApi';
+import { apiPost } from '../redux/books/booksSlice';
 
-function BookForm() {
+function Form() {
+  const dispatch = useDispatch();
+  const category = 'Action';
+
+  // State variables for title and author inputs
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [category, setCategory] = useState('');
-  const dispatch = useDispatch();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newBook = {
-      title,
-      author,
-      category,
-    };
-    dispatch(addBook(newBook));
-    setTitle('');
-    setAuthor('');
-    setCategory('');
-  };
 
   return (
-    <div>
-      <h2>Book Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <>
+      <form className="form">
+        <h1 id="name">ADD NEW BOOK</h1>
+        <div className="content">
           <input
             type="text"
             id="title"
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Book Title"
+            required
+            value={title} // Use the state variable as the value
+            onChange={(e) => setTitle(e.target.value)} // Update the state variable on change
           />
-        </div>
-        <div>
           <input
             type="text"
             id="author"
-            name="author"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
+            placeholder="Author"
+            required
+            value={author} // Use the state variable as the value
+            onChange={(e) => setAuthor(e.target.value)} // Update the state variable on change
           />
+          <button
+            type="button"
+            onClick={() => {
+              // Dispatch the action with the state variables
+              dispatch(apiPost(
+                {
+                  item_id: Date.now().toString(),
+                  title,
+                  author,
+                  category,
+                },
+              ));
+              // Reset the state variables to clear the input fields
+              setTitle('');
+              setAuthor('');
+            }}
+          >
+            ADD BOOK
+          </button>
         </div>
-        <div>
-          <input
-            type="text"
-            id="category"
-            name="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          />
-        </div>
-        <button type="submit">Submit</button>
       </form>
-    </div>
+    </>
   );
 }
 
-export default BookForm;
+export default Form;

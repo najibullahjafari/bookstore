@@ -1,24 +1,43 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import ActionButtons from './btns';
 
-function Book({ book, onDelete }) {
+function BookItem({ book }) {
   return (
-    <div>
-      <span>{book.title}</span>
-      <span>{book.author}</span>
-      <button type="button" onClick={() => onDelete(book.id)}>Delete</button>
-    </div>
+    <>
+      <div key={book.item_id}>
+        <div>
+          <p>{book.category}</p>
+          <h2>{book.title}</h2>
+          <p>{book.author}</p>
+          <div>
+            <ActionButtons book={book} />
+          </div>
+        </div>
+        <div>
+          <div />
+          <div>
+            <div>64%</div>
+            <div>completed</div>
+          </div>
+        </div>
+        <div> </div>
+        <div>
+          <p>CURRENT CHAPTER</p>
+          <p>Chapter 17</p>
+          <button type="button">UPDATE PROGRESS</button>
+        </div>
+      </div>
+    </>
   );
 }
 
-// Add prop type validation
-Book.propTypes = {
+BookItem.propTypes = {
   book: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    item_id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
   }).isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
-export default Book;
+export default BookItem;

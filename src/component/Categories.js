@@ -1,13 +1,4 @@
-import React from 'react';
-import Navigation from './navigation';
+// categories.js
+const categories = ['Fiction', 'Non-Fiction', 'Science Fiction'];
 
-function CategoriesPage() {
-  return (
-    <div className="home-con">
-      <h2>Categories Page</h2>
-      <Navigation />
-    </div>
-  );
-}
-
-export default CategoriesPage;
+export default categories;

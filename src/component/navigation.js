@@ -1,19 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import List from './listbook';
+import Form from './bookform';
 
-function Navigation() {
+function Books() {
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/categories">Categories</Link>
-        </li>
-      </ul>
-    </nav>
+    <>
+      <div className="bookList">
+        <List />
+      </div>
+      <div className="Line" />
+      <Form />
+    </>
   );
 }
 
-export default Navigation;
+export default Books;
