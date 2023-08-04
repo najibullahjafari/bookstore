@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { apiErase } from '../redux/books/booksSlice';
+import '../app.css';
 
 function ActionButtons({ book }) {
   const dispatch = useDispatch();
@@ -24,12 +25,12 @@ function ActionButtons({ book }) {
   };
 
   return (
-    <div className="buttonCont">
-      <button type="button">Comments</button>
+    <div className="button-con">
+      <a className='btn-con' href="#">Comments</a>
       |
-      <button type="button" className="btnAcc" onClick={() => dispatch(apiErase(book.item_id))}>
+      <a href="#" className="btn-con" onClick={() => dispatch(apiErase(book.item_id))}>
         Remove
-      </button>
+      </a>
       |
       {editing ? (
         <>
@@ -53,9 +54,9 @@ function ActionButtons({ book }) {
           </button>
         </>
       ) : (
-        <button type="button" className="btnAcc" onClick={handleEdit}>
+        <a href="#" className="btn-con" onClick={handleEdit}>
           Edit
-        </button>
+        </a>
       )}
     </div>
   );

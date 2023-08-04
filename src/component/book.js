@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ActionButtons from './btns';
+import '../app.css';
 
 const BookItem = ({ book }) => {
   const [progress, setProgress] = useState(Math.floor(Math.random() * 100) + 1);
@@ -10,32 +11,30 @@ const BookItem = ({ book }) => {
   };
 
   return (
-    <div key={book.item_id}>
-      <div>
-        <p>{book.category}</p>
-        <h2>{book.title}</h2>
-        <p>{book.author}</p>
+    <div key={book.item_id} className="book-container">
+      <div className="book-info">
+        <p className="book-category">{book.category}</p>
+        <h2 className="book-title">{book.title}</h2>
+        <p className="book-author">{book.author}</p>
         <div>
           <ActionButtons book={book} />
         </div>
       </div>
-      <div>
-        <div />
-        <div>
-          <div>
-            {progress}
-            %
-          </div>
-          <div>completed</div>
+      <div className="progress-bar">
+        <div className="progress-circle">
+          {progress}
+          %
         </div>
+        <div>completed</div>
       </div>
-      <div> </div>
-      <div>
-        <p>chapter</p>
-        <p>Chapter 12</p>
-        <button type="button" onClick={handleAddBook}>
-          Update progress
-        </button>
+      <div className="book-progress">
+        <div>
+          <p className="current-chapter">CURRENT CHAPTER</p>
+          <p>Chapter 12</p>
+          <button type="button" onClick={handleAddBook}>
+            Update progress
+          </button>
+        </div>
       </div>
     </div>
   );
